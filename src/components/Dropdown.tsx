@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { ApiResponse } from '../services/api';
 
-type Option = ApiResponse;
+export type Option = ApiResponse;
 
 type Props = {
   options: Option[];
