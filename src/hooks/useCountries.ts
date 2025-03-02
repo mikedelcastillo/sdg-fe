@@ -5,5 +5,6 @@ export const useCountries = () => {
   return useQuery({
     queryKey: ['countries'],
     queryFn: fetchCountries,
+    initialData: [],
   });
 };
