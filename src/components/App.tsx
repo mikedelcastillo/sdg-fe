@@ -22,19 +22,21 @@ export const App: FC = () => {
   };
 
   return (
-    <div>
-      <Dropdown
-        options={countries}
-        value={countryId}
-        onChange={selectCountry}
-        placeholder="Select a country"
-      />
-      <Dropdown
-        options={states}
-        value={stateId}
-        onChange={selectState}
-        placeholder="Select a state"
-      />
+    <div className="w-full h-full grid justify-center items-center">
+      <div className="flex flex-col gap-4">
+        <Dropdown
+          options={countries}
+          value={countryId}
+          onChange={selectCountry}
+          placeholder="Select a country"
+        />
+        <Dropdown
+          options={states}
+          value={stateId}
+          onChange={selectState}
+          placeholder="Select a state"
+        />
+      </div>
     </div>
   );
 };
