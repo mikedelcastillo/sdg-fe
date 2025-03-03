@@ -6,18 +6,23 @@ import { Dropdown } from './Dropdown';
 export const App: FC = () => {
   const [countryId, setCountryId] = useState<string>('');
   const [stateId, setStateId] = useState<string>('');
-  const { data: countries } = useCountries();
-  const { data: states } = useStates(
-    countryId === '' ? null : Number(countryId)
-  );
+  const {
+    data: countries,
+    isFetching: isLoadingCountries,
+    error: errorCountries,
+  } = useCountries();
+  const {
+    data: states,
+    isFetching: isLoadingStates,
+    error: errorStates,
+  } = useStates(countryId === '' ? null : Number(countryId));
 
   const selectCountry = (value: string) => {
-    console.log(value);
     setCountryId(value);
+    setStateId('');
   };
 
   const selectState = (value: string) => {
-    console.log(value);
     setStateId(value);
   };
 
@@ -29,12 +34,20 @@ export const App: FC = () => {
           value={countryId}
           onChange={selectCountry}
           placeholder="Select a country"
+          loading={isLoadingCountries}
+          disabled={isLoadingCountries}
+          error={errorCountries?.message}
+          tabIndex={1}
         />
         <Dropdown
           options={states}
           value={stateId}
           onChange={selectState}
           placeholder="Select a state"
+          loading={isLoadingStates}
+          disabled={isLoadingStates || countryId === ''}
+          error={errorStates?.message}
+          tabIndex={2}
         />
       </div>
     </div>

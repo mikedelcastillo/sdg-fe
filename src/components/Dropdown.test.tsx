@@ -39,4 +39,46 @@ describe('Dropdown Component', () => {
     fireEvent.change(screen.getByRole('combobox'), { target: { value: '2' } });
     expect(mockOnChange).toHaveBeenCalledWith('2');
   });
+
+  test('renders loading state', () => {
+    render(
+      <Dropdown options={options} value="1" onChange={mockOnChange} loading />
+    );
+
+    expect(screen.getByTestId('dropdown-loading')).toBeInTheDocument();
+  });
+
+  test('renders disabled state', () => {
+    render(
+      <Dropdown options={options} value="1" onChange={mockOnChange} disabled />
+    );
+
+    expect(screen.getByRole('combobox')).toBeDisabled();
+  });
+
+  test('renders error message', () => {
+    render(
+      <Dropdown
+        options={options}
+        value="1"
+        onChange={mockOnChange}
+        error="Error message"
+      />
+    );
+
+    expect(screen.getByText('Error message')).toBeInTheDocument();
+  });
+
+  test('renders with tabIndex', () => {
+    render(
+      <Dropdown
+        options={options}
+        value="1"
+        onChange={mockOnChange}
+        tabIndex={1}
+      />
+    );
+
+    expect(screen.getByRole('combobox')).toHaveAttribute('tabindex', '1');
+  });
 });
