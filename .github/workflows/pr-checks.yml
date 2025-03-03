@@ -3,6 +3,9 @@ name: PR Checks
 on:
   pull_request:
     branches: [ main ]
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches: [ main ]
 
 jobs:
   validate:
@@ -39,4 +42,5 @@ jobs:
         run: npm run test
 
       - name: Check build
-        run: npm run build 
+        run: |
+          npm run build 
