@@ -1,0 +1,42 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    name: Validate PR
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '23'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check TypeScript compilation
+        run: npx tsc -b
+
+      - name: Check linting
+        run: npm run lint
+
+      - name: Check formatting
+        run: |
+          npm run format
+          if ! git diff --exit-code; then
+            echo "Some files are not properly formatted. Please run 'npm run format' locally and commit the changes."
+            exit 1
+          fi
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Check build
+        run: npm run build 
