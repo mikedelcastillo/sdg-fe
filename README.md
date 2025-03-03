@@ -1,9 +1,8 @@
-# SDG Technical Test
+# Mike del Castillo - SDG Technical Test
 
 ## Overview
 
 This is my submission for the SDG technical test. It is a React project that pulls data from an API and displays two interactive dropdowns.
-
 
 ## Tech Stack
 
@@ -49,6 +48,7 @@ npm run test
 ## Local Development
 
 ### Prerequisites
+
 - Node.js (v23 or higher)
 - Access to test API URL and key
 
