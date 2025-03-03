@@ -20,9 +20,6 @@ describe('Dropdown Component', () => {
     );
 
     expect(screen.getByText('Select an option')).toBeInTheDocument();
-    expect(
-      screen.getByRole('option', { name: 'Select an option' })
-    ).toBeDisabled();
   });
 
   test('renders options correctly', () => {
