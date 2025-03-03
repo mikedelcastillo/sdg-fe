@@ -1,3 +1,5 @@
+![Demo](./docs/assets/demo.gif)
+
 # Mike del Castillo - SDG Technical Test
 
 ## Overview
